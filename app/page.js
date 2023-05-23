@@ -1,94 +1,65 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div className="title-section">
+        <h1>Message Cross Chain Demo</h1>
+        <button>Connect Wallet</button>
+      </div>
+      <div className="content-section">
+        <div className="chain-section">
+          <div className="chain-box">
+            <h4>Source Chain</h4>
+            <select>
+              <option value="option1">选项1</option>
+              <option value="option2">选项2</option>
+              <option value="option3">选项3</option>
+            </select>
+            <p>GateWay SC: 0x1234...</p>
+          </div>
+          <div className="chain-arrow">→</div>
+          <div className="chain-box">
+            <h4>Destination Chain</h4>
+            <select>
+              <option value="option1">选项1</option>
+              <option value="option2">选项2</option>
+              <option value="option3">选项3</option>
+            </select>
+            <p>GateWay SC: 0x1234...</p>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <h2>Demo of Message Delivery</h2>
+        <div className="message-section">
+          <div className="message-box">
+            <p>MockApp SC: 0x1234...</p>
+            <input placeholder="Message Content in Hex" />
+            <button>Send</button>
+            <p>MessageId: </p>
+          </div>
+          <div className="message-arrow">→</div>
+          <div className="message-box">
+            <p>MockApp SC: 0x1234...</p>
+            <input placeholder="MessageId" />
+            <button>Read</button>
+            <p>Content: </p>
+          </div>
+        </div>
+        <h2>Demo of Custom Token Cross Chain</h2>
+        <p>* Auto update every 20 seconds.</p>
+        <div className="token-section">
+          <div className="token-box">
+            <p>Token SC: 0x1234...</p>
+            <p>Cross Chain Pool SC: 0x1234...</p>
+            <p>Balance: 0 <button>Faucet</button></p>
+            <input placeholder="Amount" />
+            <button>Send</button>
+          </div>
+          <div className="token-arrow">→</div>
+          <div className="token-box">
+            <p>Token SC: 0x1234...</p>
+            <p>Cross Chain Pool SC: 0x1234...</p>
+            <p>Balance: 0 </p>
+          </div>
+        </div>
       </div>
     </main>
   )
