@@ -171,7 +171,7 @@ export default function Home() {
               setLoading(true);
               try {
                 const mockApp = new ethers.Contract(chainsConfig[fromChain].mockApp, MOCK_APP_ABI, signer);
-                const fee = await mockApp.estimateFee(bip44ChainIds[toChain], 300000);
+                const fee = await mockApp.estimateFee(bip44ChainIds[toChain], 2000000);
                 console.log('fee', fee);
                 let tx = await mockApp.dispatchMessage(bip44ChainIds[toChain], chainsConfig[toChain].mockApp, messageContent, {value: fee});
                 tx = await tx.wait();
