@@ -6,6 +6,12 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const chainName = {
+  'goerli': 'Ethereum Goerli Testnet',
+  'fuji': 'Avalanche Fuji Testnet',
+  'wanchainTestnet': 'Wanchain Testnet',
+}
+
 
 export default function Home() {
   const [provider, setProvider] = useState(null);
@@ -142,7 +148,7 @@ export default function Home() {
             }>
               {
                 chains.map((chain, index) => {
-                  return <option key={chain} value={chain}>{chain}</option>
+                  return <option key={chain} value={chain}>{chainName[chain]}</option>
                 })
               }
             </select>
@@ -155,7 +161,7 @@ export default function Home() {
             <select value={toChain} onChange={e=>setToChain(e.target.value)}>
               {
                 chains.filter(v=>v!== fromChain).map((chain, index) => {
-                  return <option key={chain} value={chain}>{chain}</option>
+                  return <option key={chain} value={chain}>{chainName[chain]}</option>
                 })
               }
             </select>
@@ -197,7 +203,7 @@ export default function Home() {
           <div className="message-box">
             <div style={{marginLeft:"28px"}} className={'small-title ' + inter.className}>MockApp SC:</div>
             <div style={{marginLeft:"28px"}} className={'small-content ' + inter.className}>{chainsConfig[toChain].mockApp}</div>
-            <input style={{marginLeft:"28px"}} placeholder="MessageId" value={queryMessageId} onChange={e=>setQueryMessageId(e.target.value)} />
+            <input style={{marginLeft:"28px"}} placeholder="The MessageId of Source Chain" value={queryMessageId} onChange={e=>setQueryMessageId(e.target.value)} />
             <button style={{marginLeft:"28px"}} className={'button2 ' + inter.className} onClick={async () => {
               const rpc = rpcUrls[toChain];
               const provider = new ethers.providers.JsonRpcProvider(rpc);
