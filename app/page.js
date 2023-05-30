@@ -2,6 +2,9 @@
 import { CCPOOL_ABI, MOCK_APP_ABI, MOCK_TOKEN_ABI, bip44ChainIds, chains, chainsConfig, rpcUrls, walletChainIds } from '@/config/config';
 import {ethers} from 'ethers';
 import {useEffect, useState} from 'react';
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
@@ -71,9 +74,9 @@ export default function Home() {
   return (
     <main>
       <div className="title-section">
-        <h1>Message Cross Chain Demo</h1>
+        <h1 className={inter.className}>Message Cross Chain <span className='demo'>Demo</span></h1>
         {
-          address ? <button>Address: {address}</button> : <button onClick={async ()=>{
+          address ? <button>Address: {address}</button> : <button className={'connectWallet ' + inter.className} onClick={async ()=>{
             const provider = new ethers.providers.Web3Provider(window.ethereum);
 
             await provider.send("eth_requestAccounts", []);
@@ -109,13 +112,13 @@ export default function Home() {
               setSigner(signer);
             });
 
-          }}>Connect Wallet</button>
+          }}><img width={24} height={24} src="/wallet.svg" alt="icon" /><span class="buttonText">Connect Wallet</span></button>
         }
       </div>
       <div className="content-section">
         <div className="chain-section">
           <div className="chain-box">
-            <h4>Source Chain</h4>
+            <div className={'box-title ' + inter.className}>Source <span style={{color:'black'}}>Chain</span></div>
             <select value={fromChain} onChange={e=>{
               console.log(e.target.value);
               setFromChain(e.target.value);
@@ -143,11 +146,12 @@ export default function Home() {
                 })
               }
             </select>
-            <p>GateWay SC: {chainsConfig[fromChain].wmbGatewayProxy}</p>
+            <div className={'small-title ' + inter.className}>GateWay SC: </div>
+            <div className={'small-content ' + inter.className}>{chainsConfig[fromChain].wmbGatewayProxy}</div>
           </div>
-          <div className="chain-arrow">→</div>
+          <div className="chain-arrow"><img src="/arrow.svg" alt="arrow" width={50} height={50} /></div>
           <div className="chain-box">
-            <h4>Destination Chain</h4>
+            <div className={'box-title ' + inter.className}><span style={{color:'#2FBDF4'}}>Destination</span> <span style={{color:'black'}}>Chain</span></div>
             <select value={toChain} onChange={e=>setToChain(e.target.value)}>
               {
                 chains.filter(v=>v!== fromChain).map((chain, index) => {
@@ -155,15 +159,18 @@ export default function Home() {
                 })
               }
             </select>
-            <p>GateWay SC: {chainsConfig[toChain].wmbGatewayProxy}</p>
+            <div className={'small-title ' + inter.className}>GateWay SC: </div>
+            <div className={'small-content ' + inter.className}>{chainsConfig[toChain].wmbGatewayProxy}</div>
           </div>
         </div>
-        <h2>Demo of Message Delivery</h2>
+        <div className='function-box'>
+        <div className={'title2 '+inter.className}>Demo of Message Delivery</div>
         <div className="message-section">
           <div className="message-box">
-            <p>MockApp SC: {chainsConfig[fromChain].mockApp}</p>
+            <div className={'small-title ' + inter.className}>MockApp SC:</div>
+            <div className={'small-content ' + inter.className}>{chainsConfig[fromChain].mockApp}</div>
             <input placeholder="Message Content in Hex String" value={messageContent} onChange={e=>setMessageContent(e.target.value)} />
-            <button onClick={async ()=>{
+            <button className={inter.className} onClick={async ()=>{
               if (!provider || !signer) {
                 alert('Please connect wallet first.');
                 return;
@@ -183,13 +190,15 @@ export default function Home() {
               
               setLoading(false);
             }}>Send</button>
-            <p>MessageId: {loading ? "waiting..." : messageId}</p>
+            <div className={'small-title ' + inter.className}>MessageId:</div>
+            <div className={'small-content wrapText' + inter.className}>{loading ? "waiting..." : (messageId ? messageId : 'None')}</div>
           </div>
-          <div className="message-arrow">→</div>
+          <div className="message-arrow"><img src="blackArrow.svg" width={36} /></div>
           <div className="message-box">
-            <p>MockApp SC: {chainsConfig[toChain].mockApp}</p>
-            <input placeholder="MessageId" value={queryMessageId} onChange={e=>setQueryMessageId(e.target.value)} />
-            <button onClick={async () => {
+            <div style={{marginLeft:"28px"}} className={'small-title ' + inter.className}>MockApp SC:</div>
+            <div style={{marginLeft:"28px"}} className={'small-content ' + inter.className}>{chainsConfig[toChain].mockApp}</div>
+            <input style={{marginLeft:"28px"}} placeholder="MessageId" value={queryMessageId} onChange={e=>setQueryMessageId(e.target.value)} />
+            <button style={{marginLeft:"28px"}} className={'button2 ' + inter.className} onClick={async () => {
               const rpc = rpcUrls[toChain];
               const provider = new ethers.providers.JsonRpcProvider(rpc);
               const mockApp = new ethers.Contract(chainsConfig[toChain].mockApp, MOCK_APP_ABI, provider);
@@ -197,19 +206,37 @@ export default function Home() {
               console.log('message', message);
               setMessageContent2(message.data);
             }}>Read</button>
-            <p>Content: {messageContent2}</p>
+            <div style={{marginLeft:"28px"}} className={'small-title ' + inter.className}>Content:</div>
+            <div style={{marginLeft:"28px"}} className={'small-content ' + inter.className}>{messageContent2}</div>
           </div>
         </div>
-        <h2>Demo of Custom Token Cross Chain</h2>
-        <p>* Auto update every 10 seconds.</p>
-        <p>* This demo is designed for the project party to subsidize the token cross-chain fee, and when the fee in the contract is insufficient, the cross-chain cannot be initiated</p>
+        </div>
+        <h2/>
+        <div className='function-box2' style={{marginBottom: '40px'}}>
+        <div className={'title2 '+inter.className}>Demo of Custom Token Cross Chain</div>
         <div className="token-section">
-          <div className="token-box">
-            <p>Token SC: {chainsConfig[fromChain].mockToken}</p>
-            <p>CCPool SC: {chainsConfig[fromChain].ccPool}</p>
-            <p>CCPool Balance: {poolBalance1}</p>
-            <p>Fee Balance: {feeBalance1}</p>
-            <p>Wallet Balance: {balance1} <button onClick={async ()=>{
+          <div className="token-box token-box2">
+            <input placeholder="Amount in Ether" value={amount} onChange={e=>setAmount(e.target.value)} />
+            <div className='detail'>
+              <div className='line'>
+                <div style={{width: '180px'}}>Token SC: </div>
+                <div className='wrapText'>{chainsConfig[fromChain].mockToken}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>CCPool SC:</div>
+                <div className='wrapText'>{chainsConfig[fromChain].ccPool}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>CCPool Balance:</div>
+                <div className='wrapText'>{poolBalance1}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>Fee Balance: </div>
+                <div className='wrapText'>{feeBalance1}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>Wallet Balance:</div>
+                <div className='wrapText'>{balance1} <a className='faucet' onClick={async ()=>{
               if (!provider || !signer) {
                 alert('Please connect wallet first.');
                 return;
@@ -217,9 +244,11 @@ export default function Home() {
               const mockToken = new ethers.Contract(chainsConfig[fromChain].mockToken, MOCK_TOKEN_ABI, signer);
               const tx = await mockToken.mint(address, ethers.utils.parseEther('100'));
               await tx.wait();
-            }}>Faucet</button></p>
-            <input placeholder="Amount in Ether" value={amount} onChange={e=>setAmount(e.target.value)} />
-            <button onClick={async ()=>{
+            }}><img style={{marginBottom:'-4px', marginRight:'-7px'}} src='/faucet.svg' width={20} height={20} /> Faucet</a></div>
+              </div>
+            </div>
+            
+            <button className={inter.className} onClick={async ()=>{
               try {
                 if (!provider || !signer) {
                   alert('Please connect wallet first.');
@@ -247,15 +276,38 @@ export default function Home() {
               }
             }}>Send Cross Chain</button>
           </div>
-          <div className="token-arrow">→</div>
-          <div className="token-box">
-            <p>Token SC: {chainsConfig[toChain].mockToken}</p>
-            <p>CCPool SC: {chainsConfig[toChain].ccPool}</p>
-            <p>CCPool Balance: {poolBalance2}</p>
-            <p>Fee Balance: {feeBalance2}</p>
-            <p>Wallet Balance: {balance2} </p>
+          <div style={{top: "300px"}} className="message-arrow"><img src="blackArrow.svg" width={36} /></div>
+          
+          <div className="token-box token-box2">
+          <div className='detail' style={{marginTop: '112px', marginLeft: '25px'}}>
+              <div className='line'>
+                <div style={{width: '180px'}}>Token SC: </div>
+                <div className='wrapText'>{chainsConfig[toChain].mockToken}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>CCPool SC:</div>
+                <div className='wrapText'>{chainsConfig[toChain].ccPool}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>CCPool Balance:</div>
+                <div className='wrapText'>{poolBalance2}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>Fee Balance: </div>
+                <div className='wrapText'>{feeBalance2}</div>
+              </div>
+              <div className='line'>
+                <div style={{width: '180px'}}>Wallet Balance:</div>
+                <div className='wrapText'>{balance2}</div>
+              </div>
+            </div>
           </div>
+          
         </div>
+        <div style={{marginTop: '-20px'}} className={'info ' + inter.className}>* Auto update every 10 seconds.</div>
+        <div className={'info ' + inter.className}>* This demo is designed for the project party to subsidize the token cross-chain fee, and when the fee in the contract is insufficient, the cross-chain cannot be initiated.</div>
+        </div>
+       
       </div>
     </main>
   )

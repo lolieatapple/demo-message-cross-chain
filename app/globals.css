@@ -2,7 +2,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #F5F5F5;
+  background: linear-gradient(180deg, #0F68AA 0%, #E9F0F2 100%);
   color: #333;
   margin: 0;
   padding: 0;
@@ -11,17 +11,16 @@ body {
 main {
   margin: 0 auto;
   width: 80%;
-  max-width: 1400px;
-  padding: 20px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
-  background-color: #FFFFFF;
-  border-radius: 8px;
+  max-width: 1200px;
   margin-top: 50px;
 }
 
 .title-section {
   text-align: center;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .content-section {
@@ -30,42 +29,117 @@ main {
   align-items: center;
 }
 
-h1, h2 {
+h1 {
+  font-size: 48px;
+  font-family: Inter-Bold, Inter;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 56px;
+  margin-top: 80px;
+}
+
+.demo {
+  background: #FFFFFF;
+  border-radius: 7px 7px 7px 7px;
+  opacity: 1;
+  color: #0F68AA;
+  padding: 0px, 20px, 0px, 20px;
+}
+
+.connectWallet {
+  width: 204px;
+  height: 48px;
+  background: #2FBDF4;
+  border-radius: 11px;
+  opacity: 1;
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  font-size: 18px;
+  font-family: Inter-Regular, Inter;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1; /* 去除默认行高 */
+}
+
+.buttonText {
+  line-height: 1; /* 去除默认行高 */
+}
+
+
+h2 {
   color: #333;
   margin-top: 20px;
   text-align: center;
 }
 
 button {
-  background-color: #4CAF50; /* Green */
+  width: 506px;
+  height: 68px;
+  background: #0F68AA;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 1;
   border: none;
   color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  height: 40px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 18px;
+  font-family: Inter-Regular, Inter;
+  font-weight: 400;
+}
+
+.button2 {
+  background: #2FBDF4;
 }
 
 button:hover {
   background-color: #45a049;
 }
 
-select, input {
-  width: 200px;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
-  margin: 20px 0;
-  display: block;
-  height: 40px;
+.small-title {
+  margin-top: 32px;
+  font-size: 16px;
+  font-family: Inter-Regular, Inter;
+  font-weight: 400;
+  color: #666666;
+  line-height: 19px;
+}
+
+.small-content {
+  margin-top: 10px;
+  font-size: 16px;
+font-family: Inter-Regular, Inter;
+font-weight: 400;
+color: #333333;
+line-height: 19px;
+}
+
+select {
+  max-width: 506px;
+  width: 100%;
+  height: 68px;
+  background: #FFFFFF;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 1;
+  border: 1px solid #EBEBEB;
+  padding: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: url(/select.svg) no-repeat right center;
+  background-size: 38px 38px; /* 调整箭头大小 */
+  background-position: right 10px center;
+}
+
+input {
+  max-width: 506px;
+  width: 85%;
+  height: 68px;
+  background: #FFFFFF;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 1;
+  border: 1px solid #EBEBEB;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  /* padding: 20px; */
 }
 
 .chain-section, .message-section, .token-section {
@@ -73,26 +147,147 @@ select, input {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
-  width: 100%;
+  width: 1200px;
 }
 
-.chain-box, .message-box, .token-box {
+.chain-box {
+  width: 570px!important;
+  height: 200px;
+  background: #FFFFFF;
+  border-radius: 16px 16px 16px 16px;
+  opacity: 1;
+  border: 0px solid #0F68AA;
+  padding: 32px;
+}
+
+.title2 {
+  font-size: 24px;
+  font-family: Inter-Bold, Inter;
+  font-weight: bold;
+  color: #333333;
+  line-height: 28px;
+  margin-bottom: 20px;
+  margin-left: 32px;
+}
+
+.function-box {
+  width: 1200px!important;
+  /* min-width: 900px; */
+  width: 100%;
+  height: 443px;
+  background: #FFFFFF;
+  border-radius: 16px 16px 16px 16px;
+  opacity: 1;
+  border: 0px solid #0F68AA;
+  padding: 24px 0 0 0;
+  position: relative;
+}
+
+.function-box2 {
+  width: 1200px!important;
+  /* min-width: 900px; */
+  width: 100%;
+  height: 620px;
+  background: #FFFFFF;
+  border-radius: 16px 16px 16px 16px;
+  opacity: 1;
+  border: 0px solid #0F68AA;
+  padding: 24px 0 0 0;
+  position: relative;
+}
+
+.box-title {
+  font-size: 24px;
+  font-family: Inter-Bold, Inter;
+  font-weight: bold;
+  color: #0F68AA;
+  line-height: 28px;
+  margin-bottom: 24px;
+}
+
+.message-box, .token-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
-  background-color: #EFEFEF;
-  width: 45%;
+  align-items: start;
+  /* padding: 20px; */
+  /* border-radius: 8px; */
+  border: 1px solid #EBEBEB;
+  border-left: 0;
+  border-bottom: 0;
+  padding-left: 32px;
+  width: 50%;
+  height: 380px;
 }
 
-.chain-arrow, .message-arrow, .token-arrow {
+.token-box2 {
+  padding-top: 20px;
+  height: 480px;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.chain-arrow, .token-arrow {
   font-size: 2em;
+}
+
+.message-arrow {
+  position: absolute;
+  left: 47.5%;
+  top: 179px;
+  border: 1px solid #EBEBEB;
+  padding: 10px 8px 8px 12px;
+  border-radius: 40px;
+  background-color: white;
+  width: 40px;
+  height: 40px;
 }
 
 p {
   color: #666;
   margin: 10px 0;
   text-align: center;
+}
+
+.detail {
+  width: 470px;
+  height: 212px;
+  background: #F9F9F9;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 1;
+  padding: 20px;
+  margin-bottom: 22px;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.wrapText {
+  word-wrap: break-all;
+  overflow-wrap: break-word;
+  width: 300px;
+  text-align: right;
+  color: #0F68AA;
+}
+
+.faucet {
+  width: 80px;
+  height: 22px;
+  background: #E2EBF1;
+  border-radius: 4px 4px 4px 4px;
+  opacity: 1;
+  border: 1px solid #0F68AA;
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.info {
+  font-size: 14px;
+  font-family: Inter-Regular, Inter;
+  font-weight: 400;
+  color: #999999;
+  line-height: 16px;
+  margin-left: 32px;
+  margin-bottom: 5px;
 }
