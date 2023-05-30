@@ -169,7 +169,7 @@ export default function Home() {
           <div className="message-box">
             <div className={'small-title ' + inter.className}>MockApp SC:</div>
             <div className={'small-content ' + inter.className}>{chainsConfig[fromChain].mockApp}</div>
-            <input placeholder="Message Content in Hex String" value={messageContent} onChange={e=>setMessageContent(e.target.value)} />
+            <input placeholder="Message Content in Hex String. Such as: 0x11223344" value={messageContent} onChange={e=>setMessageContent(e.target.value)} />
             <button className={inter.className} onClick={async ()=>{
               if (!provider || !signer) {
                 alert('Please connect wallet first.');
