@@ -10,6 +10,7 @@ const chainName = {
   'goerli': 'Ethereum Goerli Testnet',
   'fuji': 'Avalanche Fuji Testnet',
   'wanchainTestnet': 'Wanchain Testnet',
+  'xdcTestnet': 'XDC Apothem Testnet',
 }
 
 
