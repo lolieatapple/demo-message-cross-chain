@@ -20,7 +20,7 @@ export const MOCK_TOKEN_ABI = require('./abis/MockToken.json');
 export const CCPOOL_ABI = require('./abis/CCPool.json');
 
 export const rpcUrls = {
-  goerli: 'https://nodes-testnet.wandevs.org/eth',
+  goerli: 'https://rpc.ankr.com/eth_goerli',
   fuji: 'https://api.avax-test.network/ext/bc/C/rpc',
   wanchainTestnet: 'https://gwan-ssl.wandevs.org:46891',
   xdcTestnet: 'https://erpc.apothem.network',
